@@ -1,8 +1,7 @@
 name: CircleCI artifacts redirector
 on:
-   check_run:
-      types: completed
-
+   status:
+      if: github.event.state == 'success'
 jobs:
    circleci_artifacts_redirector_job:
      if: github.event.description == 'Your tests passed on CircleCI!'
@@ -12,8 +11,10 @@ jobs:
        - name: DEBUG
          env:
           DESCRIPTION: ${{ github.event.description }}
+          STATUSSTATE: ${{ github.event.state }}
          run: |
           echo The event description: $DESCRIPTION
+          echo The event state: $STATUSSTATE
        - name: GitHub Action step
          uses: larsoner/circleci-artifacts-redirector-action@master
          with:
