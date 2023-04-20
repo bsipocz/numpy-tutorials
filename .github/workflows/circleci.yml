@@ -1,7 +1,9 @@
 name: CircleCI artifacts redirector
 on: [status]
+
 jobs:
    circleci_artifacts_redirector_job:
+     if: github.event.description == 'Your tests passed on CircleCI!'
      runs-on: ubuntu-latest
      name: Run CircleCI artifacts redirector
      steps:
