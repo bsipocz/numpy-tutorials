@@ -5,6 +5,11 @@ jobs:
      runs-on: ubuntu-latest
      name: Run CircleCI artifacts redirector
      steps:
+       - name: DEBUG
+         env:
+          DESCRIPTION: ${{ github.event.description }}
+         run: |
+          echo The event description: $DESCRIPTION
        - name: GitHub Action step
          uses: larsoner/circleci-artifacts-redirector-action@master
          with:
