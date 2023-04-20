@@ -1,7 +1,8 @@
 name: CircleCI artifacts redirector
 on:
-   status:
-      if: github.event.description == 'Your tests passed on CircleCI!'
+   check_run:
+      types: completed
+
 jobs:
    circleci_artifacts_redirector_job:
      if: github.event.description == 'Your tests passed on CircleCI!'
